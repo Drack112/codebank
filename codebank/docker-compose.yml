@@ -3,7 +3,11 @@ version: "3.8"
 services:
   app:
     container_name: appbank
-    build: .
+    depends_on:
+      - db
+    build:
+      context: .
+      target: production
     ports:
       - "50052:50051"
     volumes:
