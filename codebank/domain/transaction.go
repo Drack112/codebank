@@ -26,6 +26,7 @@ func NewTransaction() *Transaction {
     t := &Transaction{}
     t.ID = uuid.NewV4().String()
     t.CreatedAt = time.Now()
+
     return t
 }
 
