@@ -18,7 +18,7 @@ RUN apt-get update && \
     tar -xzvf evans_linux_amd64.tar.gz && \
     mv evans ../bin && rm -f evans_linux_amd64.tar.gz
 
-CMD ["tail", "-f", "/dev/null"]
+CMD ["go", "run", "main.go"]
 
 FROM golang:1.18 as production
 
@@ -26,7 +26,8 @@ WORKDIR /go/src
 ENV PATH="/go/bin:${PATH}"
 
 RUN apt-get update && \
-    apt-get install build-essential librdkafka-dev -y
+    apt-get install build-essential librdkafka-dev -y && \
+    apt install -y libc6 libc-bin
 
 COPY . .
 RUN GOOS=linux go build -ldflags="-s -w" -o codebank

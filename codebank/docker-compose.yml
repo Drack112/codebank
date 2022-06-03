@@ -5,9 +5,10 @@ services:
     container_name: appbank
     depends_on:
       - db
+      - pgadmin
     build:
       context: .
-      target: production
+      target: development
     ports:
       - "50052:50051"
     volumes:
