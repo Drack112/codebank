@@ -5,7 +5,31 @@ services:
     build: .
     entrypoint: ./.docker/entrypoint.sh
     container_name: 'nest-backend-app'
+    depends_on:
+      - db
     ports:
       - 3000:3000
     volumes:
       - .:/home/node/app
+
+  db:
+    build: ./.docker/postgres
+    container_name: 'postres-database-nest'
+    restart: always
+    volumes:
+      - ./.docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=store
+
+  pg-admin:
+    image: dpage/pgadmin4
+    container_name: 'pgadmin-store-nest'
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@user.com
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    ports:
+      - '9000:80'
+    depends_on:
+      - db

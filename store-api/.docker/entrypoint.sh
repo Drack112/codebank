@@ -1,4 +1,4 @@
 #!/bin/bash
 
 yarn
-yarn star:dev
+yarn start:dev
