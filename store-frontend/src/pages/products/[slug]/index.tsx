@@ -14,8 +14,8 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 
-import http from "../../http";
-import { Product } from "../../interfaces";
+import http from "../../../http";
+import { Product } from "../../../interfaces";
 
 interface ProductDetailPageProps {
   product: Product;
@@ -39,9 +39,15 @@ const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ product }) => {
           subheader={`R$ ${product.price}`}
         />
         <CardActions>
-          <Button size="small" color="primary" component="a">
-            Comprar
-          </Button>
+          <Link
+            href="/products/[slug]/order"
+            as={`/products/${product.slug}/order`}
+            passHref
+          >
+            <Button size="small" color="primary" component="a">
+              Comprar
+            </Button>
+          </Link>
         </CardActions>
         <CardMedia style={{ paddingTop: "56%" }} image={product.image_url} />
         <CardContent>
