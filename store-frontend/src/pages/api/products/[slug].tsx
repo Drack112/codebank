@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { Product, products } from "../../../interfaces";
+import { Product, products } from "../../../model";
 
 export default function handler(
   req: NextApiRequest,
@@ -11,6 +11,4 @@ export default function handler(
   product
     ? res.status(200).json(product)
     : res.status(404).json({ message: "Product not found" });
-
-  res.status(200).json(product!);
 }

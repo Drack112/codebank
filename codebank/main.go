@@ -1,19 +1,19 @@
 package main
 
 import (
-    "database/sql"
-    "fmt"
-    "log"
-    "os"
+	"database/sql"
+	"fmt"
+	"log"
+	"os"
 
-    "github.com/Drack112/codebank/infrastructure/grpc/server"
-    "github.com/Drack112/codebank/infrastructure/kafka"
-    "github.com/Drack112/codebank/infrastructure/repository"
-    "github.com/Drack112/codebank/usecase"
+	"github.com/Drack112/codebank/infrastructure/grpc/server"
+	"github.com/Drack112/codebank/infrastructure/kafka"
+	"github.com/Drack112/codebank/infrastructure/repository"
+	"github.com/Drack112/codebank/usecase"
 
-    "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 
-    _ "github.com/lib/pq"
+	_ "github.com/lib/pq"
 )
 
 func init() {
@@ -28,6 +28,7 @@ func main() {
     defer db.Close()
     producer := setupKafkaProducer()
     processTransactionUseCase := setupTransactionUseCase(db, producer)
+
     serveGrpc(processTransactionUseCase)
 }
 
@@ -35,12 +36,14 @@ func setupTransactionUseCase(db *sql.DB, producer kafka.KafkaProducer) usecase.U
     transactionRepository := repository.NewTransactionRepositoryDb(db)
     useCase := usecase.NewUseCaseTransaction(transactionRepository)
     useCase.KafkaProducer = producer
+
     return useCase
 }
 
 func setupKafkaProducer() kafka.KafkaProducer {
     producer := kafka.NewKafkaProducer()
     producer.SetupProducer(os.Getenv("KafkaBootstrapServers"))
+
     return producer
 }
 
@@ -56,6 +59,7 @@ func setupDb() *sql.DB {
     if err != nil {
         log.Fatal("error connection to database")
     }
+
     return db
 }
 
@@ -63,6 +67,7 @@ func serveGrpc(processTransactionUseCase usecase.UseCaseTransaction) {
     grpcServer := server.NewGRPCServer()
     grpcServer.ProcessTransactionUseCase = processTransactionUseCase
     fmt.Println("Rodando gRPC Server")
+
     grpcServer.Serve()
 }
 

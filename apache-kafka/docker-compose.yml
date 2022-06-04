@@ -1,4 +1,5 @@
 version: "3"
+
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -31,6 +32,7 @@ services:
       bash -c
         "sleep 5s &&
         kafka-topics --create --topic=payments --if-not-exists --bootstrap-server=kafka:9092"
+
   control-center:
     image: confluentinc/cp-enterprise-control-center:6.0.1
     hostname: control-center

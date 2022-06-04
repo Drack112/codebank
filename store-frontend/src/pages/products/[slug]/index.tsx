@@ -7,15 +7,14 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
+import axios from "axios";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/dist/client/router";
-
-import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 
 import http from "../../../http";
-import { Product } from "../../../interfaces";
+import { Product } from "../../../model";
 
 interface ProductDetailPageProps {
   product: Product;
@@ -95,3 +94,5 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 
   return { paths, fallback: "blocking" };
 };
+
+// /products/[slug]/order - pagamento

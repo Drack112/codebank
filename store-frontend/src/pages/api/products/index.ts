@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { Product, products } from "../../../interfaces";
+import { Product, products } from "../../../model";
 
 export default function handler(
   req: NextApiRequest,
