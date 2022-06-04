@@ -73,7 +73,7 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   try {
     const { id } = context.params!;
-    const { data: order } = await http.get(`orders/${id}`);
+    const { data: order } = await http.get(`/orders/${id}`);
     console.log(order);
     return {
       props: {

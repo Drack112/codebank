@@ -67,7 +67,7 @@ export const getStaticProps: GetStaticProps<
 > = async (context) => {
   const { slug } = context.params!;
   try {
-    const { data: product } = await http.get(`products/${slug}`);
+    const { data: product } = await http.get(`/products/${slug}`);
 
     console.log(product);
 
@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps<
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const { data: products } = await http.get(`products`);
+  const { data: products } = await http.get(`/products`);
 
   const paths = products.map((p: Product) => ({
     params: { slug: p.slug },

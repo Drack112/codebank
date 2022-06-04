@@ -133,7 +133,7 @@ export const getServerSideProps: GetServerSideProps<
 > = async (context) => {
   const { slug } = context.params!;
   try {
-    const { data: product } = await http.get(`products/${slug}`);
+    const { data: product } = await http.get(`/products/${slug}`);
 
     console.log(product);
 
