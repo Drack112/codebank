@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/products/fa1198b0-4a38-4f04-8845-8c88b91f28ec
+PATCH http://localhost:3000/products/77d8a2e3-f9a5-489b-be6c-e035f047c6e1
 Content-Type: application/json
 
 {
@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/products/9806c04f-795a-4f28-9a2f-e5e7da08fe26
+DELETE http://localhost:3000/products/77d8a2e3-f9a5-489b-be6c-e035f047c6e1
 
 ## ORDERS ####
 
@@ -44,13 +44,13 @@ Content-Type: application/json
       "number": "1111111111111103",
       "name": "Luiz carlos",
       "expiration_month": 7,
-      "expiration_year": 2021,
+      "expiration_year": 2023,
       "cvv": "123"
     },
        "items":  [
       {
-          "quantity": 2, 
-          "product_id": "fa1198b0-4a38-4f04-8845-8c88b91f28ec"
+          "quantity": 2,
+          "product_id": "77d8a2e3-f9a5-489b-be6c-e035f047c6e1"
       }
    ]
 }
@@ -65,7 +65,7 @@ Content-Type: application/json
 #    },
 #    "items":  [
 #       {
-#           "quantity": 2, 
+#           "quantity": 2,
 #           "product_id": "8ea4791a-9534-4f45-b172-f22a7e2b90c3"
 #       }
 #    ]

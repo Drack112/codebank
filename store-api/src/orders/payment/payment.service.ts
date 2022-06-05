@@ -23,8 +23,10 @@ interface PaymentGrpcService {
 @Injectable()
 export class PaymentService implements OnModuleInit {
   private paymentGrpcService: PaymentGrpcService;
+  // Cliente gRPC
   constructor(@Inject('PAYMENT_PACKAGE') private clientGrpc: ClientGrpc) {}
 
+  // Quando for iniciado, acessar o PaymentService de golang
   onModuleInit() {
     this.paymentGrpcService =
       this.clientGrpc.getService<PaymentGrpcService>('PaymentService');
